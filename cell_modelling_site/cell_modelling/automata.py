@@ -193,6 +193,7 @@ class NK_Automata(object):
         basinStatesAmount=0
         for currentState in self.stateList:
 
+
             if currentState.inBasin==True:
                 basinStatesAmount+=1
                 firstAttractorState=self.stateList[currentState.firstAttractorStateNumber]

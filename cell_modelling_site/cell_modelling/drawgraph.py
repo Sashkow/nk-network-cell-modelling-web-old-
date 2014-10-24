@@ -10,12 +10,12 @@ import os
 class DrawGraph(object):
     #valueUpdated = QtCore.pyqtSignal(int)
     
-    def drawGeneConnecionsGraph(self,linksList,currentFolder):
+    def drawGeneConnecionsGraph(self,functionsList, linksList, currentFolder):
         print "Saving function links"
         A= AGraph()
         for i in range(len(linksList)):
-            A.add_node(i,label="f"+str(i))
-      
+            A.add_node(i,label="gene "+str(int(str(functionsList[i]),2)))
+            
         for boolFunNumber in range(len(linksList)):
             for link in linksList[boolFunNumber]:
                 #print link, "->", boolFunNumber
@@ -70,9 +70,9 @@ class DrawGraph(object):
         maxNodeSize=10
         
         for item in d:
-            nodeSize=minNodeSize+maxNodeSize*d[item][1]/statesAmount
-            
-            A.add_node(item,label=d[item][1],width=nodeSize,height=nodeSize)
+            nodeSize=minNodeSize+maxNodeSize* float(d[item][1])/statesAmount
+            #print item, nodeSize, "=", minNodeSize,"+",maxNodeSize,"*",d[item][1],"/", statesAmount
+            A.add_node(item,label=item,width=nodeSize,height=nodeSize/2)
         
         for item in d:
             if (str(d[item][0]),str(item)) in A.edges():     
